@@ -20,9 +20,7 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 	private JSpotBoard _board;
 	private Boolean _isTorusEnabled;
 	private JSlider _size_slider;
-	JButton _torus_button;
-//	private JSlider _speed_slider;
-//	private GridLayout _grid;
+	private JButton _torus_button;
 	private List<GOLViewListener> _listeners;
 
 	public GOLView() {
@@ -72,22 +70,6 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 		button_panel.add(_size_slider);
 		_size_slider.addChangeListener(this);
 
-		// Start/stop button
-//		JButton start_button = new JButton("Start/Stop");
-//		button_panel.add(start_button);
-//		start_button.setActionCommand("Start");
-//		start_button.addActionListener(this);
-//
-//		// Slider for speed
-//		_speed_slider = new JSlider(1, 100, 1);
-//		_speed_slider.setPaintTicks(true);
-//		_speed_slider.setSnapToTicks(false);
-//		_speed_slider.setPaintLabels(false);
-//		_speed_slider.setMajorTickSpacing(10);
-//		button_panel.add(new JLabel("Speed: "));
-//		button_panel.add(_speed_slider);
-//		_speed_slider.addChangeListener(this);
-
 		// Add the button panel to the JPanel
 		add(button_panel, BorderLayout.SOUTH);
 
@@ -103,13 +85,11 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case ("Reset"):
-			System.out.println("Clicked Reset!");
 			notifyReset();
 			break;
 		case ("Next"):
 			notifyNextStep();
 			break;
-//		case ("Start"):
 		case ("Random"):
 			notifyRandomFill();
 			break;
@@ -122,6 +102,7 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 			if (newTh != null) {
 				notifyThreshold(newTh[0], newTh[1], newTh[2], newTh[3]);
 			}
+			break;
 		}
 
 	}
@@ -138,11 +119,7 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 
 	@Override
 	public void spotClicked(Spot spot) {
-		// TODO Auto-generated method stub
-		System.out.println("Spot clicked! " + spot.getCoordString());
 		notifyCellClicked(spot.getSpotX(), spot.getSpotY());
-		// paintCell(spot.getSpotX(), spot.getSpotY());
-
 	}
 
 	@Override
@@ -234,7 +211,6 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 	}
 
 	private void setBoard(int size) {
-		System.out.println(size);
 		_board = new JSpotBoard(size, size);
 		add(_board, BorderLayout.CENTER);
 		revalidate();
@@ -250,3 +226,4 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 		}
 	}
 }
+
