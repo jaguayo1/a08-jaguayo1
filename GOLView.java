@@ -20,7 +20,7 @@ public class GOLView extends JPanel implements ActionListener, SpotListener, Cha
 	private JSpotBoard _board;
 	private Boolean _isTorusEnabled;
 	private JSlider _size_slider;
-	JButton _torus_button;
+	private JButton _torus_button;
 	private List<GOLViewListener> _listeners;
 
 	public GOLView() {
